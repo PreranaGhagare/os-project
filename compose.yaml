@@ -1,0 +1,18 @@
+services:
+  libraos:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      LIBRAOS_DATA_DIR: /data
+    volumes:
+      - libraos-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+
+volumes:
+  libraos-data:

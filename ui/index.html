@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111827">
+    <title>LibraOS</title>
+    <link rel="stylesheet" href="/ui/css/style.css?v=stage9-1">
+  </head>
+  <body>
+    <section id="boot-screen" class="boot-screen" aria-label="LibraOS boot">
+      <div class="boot-card">
+        <div class="boot-brand"><span class="brand-mark">L</span><span>LIBRA<span class="brand-os">OS</span></span></div>
+        <div class="boot-subtitle">A library management operating system</div>
+        <div class="boot-log" id="boot-log" aria-live="polite"></div>
+        <div class="boot-progress"><span id="boot-progress"></span></div>
+        <div class="boot-footer"><span id="boot-status">Connecting to kernel...</span><button id="skip-boot" type="button">Skip boot</button></div>
+      </div>
+    </section>
+
+    <main id="desktop" class="desktop hidden">
+      <header class="topbar">
+        <button id="top-start" class="top-start" aria-label="Open start menu"><span class="brand-mark small">L</span> LibraOS</button>
+        <div class="top-system"><span class="connection-dot" id="connection-dot"></span><span id="connection-label">Kernel connected</span><span class="top-divider"></span><span>User: <b>guest</b></span><span class="role-pill">DEMO</span><span class="mode-pill">USER MODE</span></div>
+        <button id="presentation-toggle" class="presentation-toggle" type="button" aria-pressed="false">Presentation</button>
+        <div class="top-metrics"><span><i class="metric-icon cpu-icon"></i>CPU <b>03%</b></span><span><i class="metric-icon memory-icon"></i>MEM <b>18%</b></span><time id="clock"></time></div>
+      </header>
+
+      <section class="desktop-icons" aria-label="Desktop shortcuts">
+        <button class="desktop-icon" data-open="terminal"><span class="app-icon terminal-icon">›_</span><span>Terminal</span></button>
+        <button class="desktop-icon" data-open="kernel-log"><span class="app-icon log-icon">≋</span><span>Kernel Log</span></button>
+        <button class="desktop-icon" data-open="file-explorer"><span class="app-icon files-icon">▰</span><span>File Explorer</span></button>
+        <button class="desktop-icon" data-open="task-manager"><span class="app-icon task-icon">▥</span><span>Task Manager</span></button>
+        <button class="desktop-icon" data-open="sync-monitor"><span class="app-icon sync-icon">⇄</span><span>Sync Monitor</span></button>
+        <button class="desktop-icon" data-open="system-monitor"><span class="app-icon system-icon">▤</span><span>Resource Monitor</span></button>
+        <button class="desktop-icon" data-open="security"><span class="app-icon about-icon">⛨</span><span>Security</span></button>
+        <button class="desktop-icon" data-open="library"><span class="app-icon files-icon">▤</span><span>Library</span></button>
+        <button class="desktop-icon" data-open="observability"><span class="app-icon log-icon">⌁</span><span>Trace &amp; Journal</span></button>
+        <button class="desktop-icon" data-open="scenarios"><span class="app-icon task-icon">⇆</span><span>Scenario Lab</span></button>
+        <button class="desktop-icon" data-open="about"><span class="app-icon about-icon">i</span><span>About LibraOS</span></button>
+      </section>
+
+      <section id="window-layer" class="window-layer" aria-label="Application windows"></section>
+      <section id="start-menu" class="start-menu hidden" aria-label="Start menu">
+        <div class="start-heading"><span class="brand-mark small">L</span><div><strong>LibraOS</strong><small>Stage 9 · Presentation &amp; replay</small></div></div>
+        <div class="start-section-label">SYSTEM TOOLS</div>
+        <button data-open="terminal"><span class="menu-app-icon terminal-icon">›_</span>Terminal <kbd>T</kbd></button>
+        <button data-open="kernel-log"><span class="menu-app-icon log-icon">≋</span>Kernel Log</button>
+        <button data-open="file-explorer"><span class="menu-app-icon files-icon">▰</span>File Explorer</button>
+        <button data-open="library"><span class="menu-app-icon files-icon">▤</span>Library</button>
+        <button data-open="observability"><span class="menu-app-icon log-icon">⌁</span>Trace &amp; Journal</button>
+        <button data-open="scenarios"><span class="menu-app-icon task-icon">⇆</span>Scenario Lab</button>
+        <button data-open="task-manager"><span class="menu-app-icon task-icon">▥</span>Task Manager</button>
+        <button data-open="sync-monitor"><span class="menu-app-icon sync-icon">⇄</span>Sync Monitor</button>
+        <button data-open="system-monitor"><span class="menu-app-icon system-icon">▤</span>Resource Monitor</button>
+        <button data-open="security"><span class="menu-app-icon about-icon">⛨</span>Security</button>
+        <button data-open="session-studio"><span class="menu-app-icon task-icon">▶</span>Session Studio</button>
+        <button data-open="about"><span class="menu-app-icon about-icon">i</span>About LibraOS</button>
+        <div class="start-bottom"><span id="start-user">guest · demo session</span><div><button id="theme-toggle" title="Toggle light theme" aria-label="Toggle theme">☼</button><button id="power-button" title="Power options" aria-label="Power options">⏻</button></div></div>
+        <div id="power-menu" class="power-menu hidden"><button data-power="reboot">↻ Restart</button><button data-power="shutdown">⏻ Shut down</button></div>
+      </section>
+      <button id="presentation-exit" class="presentation-exit" type="button">Exit presentation · Esc</button>
+
+      <footer class="taskbar">
+        <button id="taskbar-start" class="taskbar-start" aria-label="Open start menu"><span class="brand-mark small">L</span></button>
+        <div id="taskbar-windows" class="taskbar-windows"></div>
+        <div class="taskbar-tray"><span class="tray-user">◉</span><span id="tray-clock"></span></div>
+      </footer>
+    </main>
+
+    <section id="power-screen" class="power-screen hidden" aria-live="polite">
+      <span class="brand-mark">L</span><h1 id="power-title">LibraOS is shut down</h1>
+      <p id="power-message">The simulated kernel is stopped.</p><button id="power-on">Power on</button>
+    </section>
+
+    <script type="module" src="/ui/js/app.js?v=security-hardening-1"></script>
+  </body>
+</html>
